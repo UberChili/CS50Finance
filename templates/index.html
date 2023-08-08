@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <form action="/index" method="post">
+        <!-- <div class="mb-3"> -->
+        <!-- <div class="section"> -->
+        <div class="container py-5 text-center">
+            <table class="table table-stripped">
+                <thead>
+                    <tr>
+                        <th class="text-start">Symbol</th>
+                        <th class="text-start">Name</th>
+                        <th class="text-end">Shares</th>
+                        <th class="text-end">Price</th>
+                        <th class="text-end">TOTAL</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for holding in holdings %}
+                    <tr>
+                        <td class="text-start">{{ holding.symbol }}</td>
+                        <td class="text-start">{{ holding.name }}</td>
+                        <td class="text-end">{{ holding.amount }}</td>
+                        <td class="text-end">{{ holding.price }}</td>
+                        <td class="text-end">{{ holding.TOTAL }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="border-0 fw-bold text-end" colspan="4">Cash</td>
+                        <td class="border-0 text-end">{{ cash }}</td>
+                    </tr>
+                        <td class="border-0 fw-bold text-end" colspan="4">TOTAL</td>
+                        <td class="border-0 text-end">{{ grand_total }}</td>
+                    <tr>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </form>
+{% endblock %}
